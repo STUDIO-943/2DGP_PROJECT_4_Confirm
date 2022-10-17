@@ -37,7 +37,7 @@ def draw (bottom):
     global anim_frame
 
     clear_canvas()
-    background.draw(,)
+    background.draw(1600,900)
     char.clip_draw(frame * 100, bottom, 100, 100, x, y)
     update_canvas()
 
@@ -51,8 +51,8 @@ def draw (bottom):
     delay(0.05)
 
 open_canvas()
-background = load_image('')
-char = load_image('')
+background = load_image('background.png')
+char = load_image('anim_sheet_1')
 
 running = True
 x = 800 // 2
