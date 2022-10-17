@@ -38,12 +38,12 @@ def draw (bottom):
 
     clear_canvas()
     background.draw(1600,900)
-    char.clip_draw(frame * 100, bottom, 100, 100, x, y)
+    char.clip_draw(anim_frame * 64, bottom, 64, 64, x, y)
     update_canvas()
 
     handle_events()
 
-    frame = (frame + 1) % 8
+    anim_frame = (anim_frame + 1) % 8
 
     x += dir_x * 5
     y += dir_y * 5
@@ -52,25 +52,35 @@ def draw (bottom):
 
 open_canvas()
 background = load_image('background.png')
-char = load_image('anim_sheet_1')
+char = load_image('anim_sheet_1.png')
 
 running = True
 x = 800 // 2
 y = 90
-frame = 0
+anim_frame = 0
 dir_x = 0
 dir_y = 0
+dir_check = 0
 
 
 while running:
-    if dir_x < 0:
-        draw(200)
-    elif dir_x > 0:
+    if dir_check == 1:
+        dir_check = 300
+    elif dir_check == -1:
+        dir_check = 200
+        
+    if dir_x == 1:
+        dir_check = 1
         draw(100)
-    elif dir_y < 0:
+    elif dir_x == -1:
+        dir_check = -1
         draw(0)
-    elif dir_y > 0:
-        draw(300)
+    elif dir_y != 0:
+        draw(dir_check)
+    elif dir_x == 0:
+        draw(dir_check)
+    elif dir_y == 0:
+        draw(dir_check)
 
 close_canvas()
 
