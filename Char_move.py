@@ -54,9 +54,25 @@ open_canvas()
 background = load_image('')
 char = load_image('')
 
+running = True
+x = 800 // 2
+y = 90
+frame = 0
+dir_x = 0
+dir_y = 0
 
 
+while running:
+    if dir_x < 0:
+        draw(200)
+    elif dir_x > 0:
+        draw(100)
+    elif dir_y < 0:
+        draw(0)
+    elif dir_y > 0:
+        draw(300)
 
+close_canvas()
 
 
 
