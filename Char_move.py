@@ -30,7 +30,7 @@ def handle_events():
             elif event.key == SDLK_s:
                 dir_y += 1 
 
-def draw (bottom): 
+def draw (bottom):  #에니메이션 시트 삽입, 그리고 프레임 설정, 가로 길이 64픽셀 세로 100픽셀, 8x8 동작
 
     global x, y
     global dir_x, dir_y
@@ -50,7 +50,7 @@ def draw (bottom):
 
     delay(0.03)
 
-open_canvas()
+open_canvas() #이미지 넣기
 background = load_image('background.png')
 char = load_image('anim_sheet_3.png')
 
@@ -63,7 +63,7 @@ dir_y = 0
 dir_check = 0
 
 
-while running:
+while running: #방향에 따른 idle 에니메이션 구성
     if dir_check == 1:
         dir_check = 200
     elif dir_check == -1:
