@@ -1,22 +1,33 @@
 from pico2d import *
 
-# fill here
-
+running = True
+image = None
+logo_time = 0.0
 def enter():
-    # fill here
+    global image
+    image = load_image('Main_logo.jpeg')
     pass
 
 def exit():
-    # fill here
+    global image
+    del image
     pass
+
 
 def update():
-    # fill here
-    pass
+    global logo_time
+    global running
+    if logo_time > 1.0:
+        logo_time = 0
+        running = False
+    delay(0.01)
+    logo_time += 0.01
 
 def draw():
-    # fill here
-    pass
+    clear_canvas()
+    image.draw(400, 300)
+    update_canvas()
+
 
 def handle_events():
     events = get_events()

@@ -1,5 +1,7 @@
 import pico2d
 import Char_move
+import logo_state
+
 
 pico2d.open_canvas()
 
