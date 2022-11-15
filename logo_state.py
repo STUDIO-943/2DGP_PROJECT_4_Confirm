@@ -1,3 +1,4 @@
+import game_framework
 from pico2d import *
 
 running = True
@@ -5,7 +6,7 @@ image = None
 logo_time = 0.0
 def enter():
     global image
-    image = load_image('Main_logo.jpeg')
+    image = load_image('logo.png')
     pass
 
 def exit():
@@ -16,10 +17,10 @@ def exit():
 
 def update():
     global logo_time
-    global running
+    # global running
     if logo_time > 1.0:
         logo_time = 0
-        running = False
+        game_framework.quit()
     delay(0.01)
     logo_time += 0.01
 
