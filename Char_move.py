@@ -51,6 +51,7 @@ def draw (bottom):  #에니메이션 시트 삽입, 그리고 프레임 설정, 
     delay(0.03)
 
 open_canvas() #이미지 넣기
+
 background = load_image('background.png')
 char = load_image('anim_sheet_3.png')
 
@@ -92,7 +93,35 @@ while running: #방향에 따른 idle 에니메이션 구성
 
 close_canvas()
 
-
+# while running:
+#
+#     global bottom
+#
+#     if dir_check == 1:
+#         dir_check = 200
+#     elif dir_check == -1:
+#         dir_check = 100
+#     elif dir_check == 2:
+#         dir_check = 300
+#     elif dir_check == -2:
+#         dir_check = 0
+#
+#     if dir_x == 1:
+#         dir_check = 1
+#         bottom = 600
+#     elif dir_x == -1:
+#         dir_check = -1
+#         bottom = 500
+#     elif dir_y > 0:
+#         dir_check = 2
+#         bottom = 700
+#     elif dir_y < 0:
+#         dir_check = -2
+#         bottom = 400
+#     elif dir_x == 0:
+#         bottom = dir_check
+#     elif dir_y == 0:
+#         bottom = dir_check
 
 
 
