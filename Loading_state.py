@@ -1,6 +1,9 @@
 import game_framework
 from pico2d import *
 import title_state
+import logo_state
+import Select_state
+
 
 
 running = True
@@ -8,7 +11,7 @@ image = None
 logo_time = 0.0
 def enter():
     global image
-    image = load_image('1.png')
+    image = load_image('L.png')
     pass
 
 def exit():
@@ -23,7 +26,7 @@ def update():
     if logo_time > 1.0:
         logo_time = 0
         # game_framework.quit()
-        game_framework.change_state(title_state)
+        game_framework.change_state(Select_state)
     delay(0.01)
     logo_time += 0.01
 

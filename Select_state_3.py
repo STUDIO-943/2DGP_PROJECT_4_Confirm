@@ -4,14 +4,14 @@ import game_framework
 import Play_state
 import Select_state
 import Select_state_2
-import Loading_state
+
 
 image = None
 
 def enter():
     # fill here
     global image
-    image = load_image('2.png')
+    image = load_image('S3.png')
     pass
 
 def exit():
@@ -29,8 +29,8 @@ def handle_events():
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
-            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                game_framework.change_state(Loading_state)
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_a):
+                game_framework.change_state(Select_state_2)
     pass
 
 def draw():

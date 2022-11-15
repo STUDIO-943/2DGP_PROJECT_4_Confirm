@@ -3,14 +3,14 @@ import game_framework
 import title_state
 class Grass:
     def __init__(self):
-        self.image = load_image('background.png')
+        self.image = load_image('background2.png')
 
     def draw(self):
-        self.image.draw(1600, 800)
+        self.image.draw(800, 600)
 
 class Boy:
     def __init__(self):
-        self.x, self.y = 0, 90
+        self.x, self.y = 650, 1050
         self.frame = 0
         self.image = load_image('anim_sheet_3.png')
         self.dir_x = 0

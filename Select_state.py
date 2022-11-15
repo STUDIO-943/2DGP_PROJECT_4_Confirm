@@ -2,16 +2,16 @@ from pico2d import *
 
 import game_framework
 import Play_state
-import Select_state
 import Select_state_2
-import Loading_state
+import Loading_state_2
+
 
 image = None
 
 def enter():
     # fill here
     global image
-    image = load_image('2.png')
+    image = load_image('S1.png')
     pass
 
 def exit():
@@ -29,8 +29,10 @@ def handle_events():
         else:
             if (event.type, event.key) == (SDL_KEYDOWN, SDLK_ESCAPE):
                 game_framework.quit()
+            elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_d):
+                game_framework.change_state(Select_state_2)
             elif (event.type, event.key) == (SDL_KEYDOWN, SDLK_SPACE):
-                game_framework.change_state(Loading_state)
+                game_framework.change_state(Loading_state_2)
     pass
 
 def draw():
