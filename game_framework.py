@@ -59,6 +59,9 @@ def change_state(state):
     stack.append(state)
     state.enter()
 
+def change_states(state):
+
+    stack.append(state)
 
 
 def push_state(state):

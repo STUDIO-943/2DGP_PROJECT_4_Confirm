@@ -1,17 +1,15 @@
 import pico2d
-import Char_move
-import logo_state
-
+import Play_state
 
 pico2d.open_canvas()
 
-Char_move.enter()
+Play_state.enter()
 
-while Char_move.running:
-    Char_move.handle_events()
-    Char_move.update()
-    Char_move.draw()
+while Play_state.running:
+    Play_state.handle_events()
+    Play_state.update()
+    Play_state.draw()
 
-Char_move.exit()
+Play_state.exit()
 
 pico2d.close_canvas()
