@@ -1,6 +1,16 @@
 from pico2d import *
 import game_framework
 import title_state
+import random
+import json
+import os
+import winsound
+from zombie import Zombie
+from BehaviorTree import BehaviorTree, Selector, Sequence, Leaf
+
+
+
+
 class Grass:
     def __init__(self):
         self.image = load_image('background2.png')
@@ -141,6 +151,9 @@ def enter():
     dir_y = 0
     attack = 0
 
+    zombie_list = [Zombie()]
+    Play_state.add_objects(zombie_list, 1)
+
 # 종료
 def exit():
     global boy, grass
@@ -154,5 +167,6 @@ def draw():
     grass.draw()
     boy.draw()
     update_canvas()
+
 
 
