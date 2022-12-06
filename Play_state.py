@@ -6,6 +6,7 @@ import json
 import os
 import winsound
 from zombie import Zombie
+import game_world
 from BehaviorTree import BehaviorTree, Selector, Sequence, Leaf
 
 
@@ -57,22 +58,22 @@ class Boy:
 
         if dir_x == 1:
             self.dir_check = 1
-            delay(0.05)
+            delay(0.02)
             self.image.clip_draw(self.frame*64, 600, 64, 100, self.x, self.y)
 
         elif dir_x == -1:
             self.dir_check = -1
-            delay(0.05)
+            delay(0.02)
             self.image.clip_draw(self.frame*64, 500, 64, 100, self.x, self.y)
 
         elif dir_y > 0:
             self.dir_check = 2
-            delay(0.05)
+            delay(0.02)
             self.image.clip_draw(self.frame*64, 700, 64, 100, self.x, self.y)
 
         elif dir_y < 0:
             self.dir_check = -2
-            delay(0.05)
+            delay(0.02)
             self.image.clip_draw(self.frame*64, 400, 64, 100, self.x, self.y)
 
         elif dir_x == 0:
@@ -130,6 +131,17 @@ def handle_events():
             elif event.key == SDLK_SPACE:
                 attack -= 1
 
+def collide(a, b):
+    # fill here
+    left_a, bottom_a, right_a, top_a = a.get_bb()
+    left_b, bottom_b, right_b, top_b = b.get_bb()
+
+    if left_a > right_b: return False
+    if right_a < left_b: return False
+    if top_a < bottom_b: return False
+    if bottom_a > top_b: return False
+
+    return True
 
 
 boy = None
@@ -151,8 +163,8 @@ def enter():
     dir_y = 0
     attack = 0
 
-    zombie_list = [Zombie()]
-    Play_state.add_objects(zombie_list, 1)
+    zombie_list = [Zombie() for i in range(5)]
+    game_world.add_objects(zombie_list, 1)
 
 # 종료
 def exit():
@@ -162,11 +174,22 @@ def exit():
 
 def update():
     boy.update()
+    for game_object in game_world.all_objects():
+        game_object.update()
+
+    for a, b, group in game_world.all_collision_pairs():
+        if collide(a, b):
+            print('COLLISION ', group)
+            a.handle_collision(b, group)
+            b.handle_collision(a, group)
+
+
 def draw():
     clear_canvas()
     grass.draw()
     boy.draw()
+    for game_object in game_world.all_objects():
+        game_object.draw()
     update_canvas()
-
 
 

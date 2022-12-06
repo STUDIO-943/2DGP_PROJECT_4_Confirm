@@ -1,3 +1,5 @@
+import pickle
+
 
 # layer 0: Background Objects
 # layer 1: Foreground Objects
@@ -12,19 +14,10 @@ def add_objects(ol, depth):
 
 def remove_object(o):
     for layer in objects:
-        if o in layer:
-            layer.remove(o)
-            del o
-            return
-    raise ValueError('Trying destroy non existing object')
-
-
-def remove_object(o):
-    for layer in objects:
         try:
             layer.remove(o)
             remove_collision_object(o)
-            del o
+            # del o
             return
         except:
             pass
@@ -38,19 +31,17 @@ def all_objects():
 
 
 def clear():
-    for o in all_objects():
-        del o
-    for layer in objects:
-        layer.clear()
+    global objects
+    global collision_group
 
-
-
+    # nullify objects and collision group delete all the contained objects - automatic garbage collection
+    objects = [[],[]]
+    collision_group = dict()
 
 
 def add_collision_pairs(a, b, group):
 
     if group not in collision_group:
-        print('Add new group ', group)
         collision_group[group] = [ [], [] ] # list of list : list pair
 
     if a:
@@ -64,9 +55,6 @@ def add_collision_pairs(a, b, group):
             collision_group[group][0] += b
         else:
             collision_group[group][0].append(b)
-
-    print(collision_group)
-
 
 
 def all_collision_pairs():
@@ -88,4 +76,17 @@ def update():
     for game_object in all_objects():
         game_object.update()
 
+
+
+
+def save():
+    game = [objects, collision_group]
+    with open('game.sav', 'wb') as f:
+        pickle.dump(game, f)
+
+def load():
+    global objects, collision_group
+    with open('game.sav', 'rb') as f:
+        game = pickle.load(f)
+        objects, collision_group = game[0], game[1]
 
